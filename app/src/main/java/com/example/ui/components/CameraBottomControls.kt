@@ -139,8 +139,7 @@ fun CameraBottomControls(
           modifier = Modifier
             .size(44.dp)
             .clip(CircleShape)
-            .background(CameraSurfaceElevated)
-            .border(1.dp, CameraBorder, CircleShape)
+            .background(Color.Transparent)
             .testTag("flip_camera_button")
         ) {
           Icon(
@@ -166,26 +165,21 @@ fun CameraBottomControls(
             modifier = Modifier
               .size(52.dp)
               .clip(RoundedCornerShape(14.dp))
-              .background(if (overlayState.uri != null) OverlayCyanMuted else CameraSurfaceElevated)
-              .border(
-                1.5.dp,
-                if (overlayState.uri != null) Color.Transparent else CameraBorder,
-                RoundedCornerShape(14.dp)
-              )
+              .background(Color.Transparent)
               .testTag("overlay_picker_button"),
             contentAlignment = Alignment.Center
           ) {
             Icon(
               imageVector = Icons.Default.MoreVert,
               contentDescription = "Import reference overlay video from gallery",
-              tint = if (overlayState.uri != null) OverlayCyan else TextPrimary,
+              tint = TextPrimary,
               modifier = Modifier.size(24.dp)
             )
           }
           Spacer(modifier = Modifier.height(4.dp))
           Text(
             text = if (overlayState.uri != null) "Overlay" else "Import Ref",
-            color = if (overlayState.uri != null) OverlayCyan else TextSecondary,
+            color = TextPrimary,
             fontSize = 11.sp,
             fontWeight = FontWeight.Medium
           )

@@ -140,7 +140,7 @@ fun VideoOverlayPlayer(
             .fillMaxHeight(0.5f)
             .align(Alignment.TopCenter)
             .alpha(overlayState.opacity)
-            .background(Color.Black)
+            .background(Color.Transparent)
             .border(1.dp, Color.Transparent)
         ) {
           OverlayVideoSurface(
@@ -168,7 +168,7 @@ fun VideoOverlayPlayer(
             .fillMaxHeight(0.5f)
             .align(Alignment.BottomCenter)
             .alpha(overlayState.opacity)
-            .background(Color.Black)
+            .background(Color.Transparent)
             .border(1.dp, Color.Transparent)
         ) {
           OverlayVideoSurface(
@@ -234,7 +234,7 @@ fun VideoOverlayPlayer(
             .shadow(12.dp, shape)
             .clip(shape)
             .alpha(overlayState.opacity)
-            .background(CameraBlack)
+            .background(Color.Transparent)
             .border(1.5.dp, Color.Transparent, shape)
             .then(
               if (!overlayState.isLocked) {
@@ -262,7 +262,7 @@ fun VideoOverlayPlayer(
           Row(
             modifier = Modifier
               .fillMaxWidth()
-              .background(GlassOverlay)
+              .background(Color.Transparent)
               .padding(horizontal = 8.dp, vertical = 4.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.End
@@ -275,7 +275,7 @@ fun VideoOverlayPlayer(
                 Icon(
                   imageVector = if (overlayState.isLocked) Icons.Default.Lock else Icons.Default.LockOpen,
                   contentDescription = "Lock overlay position",
-                  tint = if (overlayState.isLocked) OverlayCyan else TextSecondary,
+                  tint = if (overlayState.isLocked) TextPrimary else TextSecondary,
                   modifier = Modifier.size(14.dp)
                 )
               }
@@ -304,23 +304,6 @@ fun VideoOverlayPlayer(
                 )
               }
             }
-          }
-
-          // Bottom Quick Opacity Pill Indicator
-          Box(
-            modifier = Modifier
-              .align(Alignment.BottomCenter)
-              .padding(bottom = 6.dp)
-              .clip(RoundedCornerShape(8.dp))
-              .background(CameraBlack.copy(alpha = 0.7f))
-              .padding(horizontal = 6.dp, vertical = 2.dp)
-          ) {
-            Text(
-              text = "${(overlayState.opacity * 100).toInt()}%",
-              color = TextSecondary,
-              fontSize = 9.sp,
-              fontWeight = FontWeight.Medium
-            )
           }
         }
       }
@@ -401,7 +384,7 @@ private fun OverlayHUDHeader(
   Row(
     modifier = modifier
       .fillMaxWidth()
-      .background(GlassOverlay)
+      .background(Color.Transparent)
       .padding(horizontal = 12.dp, vertical = 6.dp),
     verticalAlignment = Alignment.CenterVertically,
     horizontalArrangement = Arrangement.SpaceBetween
@@ -427,7 +410,7 @@ private fun OverlayHUDHeader(
         Icon(
           imageVector = Icons.Default.Tune,
           contentDescription = "Overlay options",
-          tint = OverlayCyan,
+          tint = TextPrimary,
           modifier = Modifier.size(18.dp)
         )
       }

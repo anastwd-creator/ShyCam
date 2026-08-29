@@ -190,7 +190,7 @@ class CameraViewModel(application: Application) : AndroidViewModel(application) 
         OverlayPreset.PIP_CORNER -> it.copy(
           preset = preset,
           scale = 0.85f,
-          opacity = 0.95f,
+          opacity = 1.0f,
           offsetX = 0f,
           offsetY = 0f
         )

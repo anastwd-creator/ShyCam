@@ -16,7 +16,7 @@ data class OverlayVideoState(
   val durationMs: Long = 0L,
   val isLooping: Boolean = true,
   val isMuted: Boolean = true, // Must be muted without audio as requested
-  val opacity: Float = 0.85f,
+  val opacity: Float = 1.0f,
   val scale: Float = 1.0f,
   val offsetX: Float = 0f,
   val offsetY: Float = 0f,
