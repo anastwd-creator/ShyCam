@@ -25,7 +25,7 @@ import androidx.compose.material.icons.filled.DeleteOutline
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.LockOpen
 import androidx.compose.material.icons.filled.RestartAlt
-import androidx.compose.material.icons.filled.VideoLibrary
+import androidx.compose.material.icons.filled.SwapHoriz
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Button
@@ -369,7 +369,7 @@ fun OverlaySettingsSheet(
             contentColor = TextPrimary
           )
         ) {
-          Icon(Icons.Default.VideoLibrary, contentDescription = null, modifier = Modifier.size(16.dp))
+          Icon(Icons.Default.SwapHoriz, contentDescription = null, modifier = Modifier.size(16.dp))
           Spacer(modifier = Modifier.width(6.dp))
           Text(text = "Replace Video", fontSize = 12.sp)
         }

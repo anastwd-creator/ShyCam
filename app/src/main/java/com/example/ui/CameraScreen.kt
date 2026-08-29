@@ -53,7 +53,6 @@ import com.example.ui.components.CameraTopBar
 import com.example.ui.components.CameraViewFinder
 import com.example.ui.components.OverlaySettingsSheet
 import com.example.ui.components.PermissionRequestView
-import com.example.ui.components.RecordedVideoGallerySheet
 import com.example.ui.components.RecordingTimerBadge
 import com.example.ui.components.VideoOverlayPlayer
 import com.example.ui.theme.CameraBlack
@@ -74,8 +73,6 @@ fun CameraScreen(
 
   val cameraUiState by viewModel.cameraUiState.collectAsStateWithLifecycle()
   val overlayState by viewModel.overlayState.collectAsStateWithLifecycle()
-  val selectedPreviewVideo by viewModel.selectedPreviewVideo.collectAsStateWithLifecycle()
-  val isGallerySheetOpen by viewModel.isGallerySheetOpen.collectAsStateWithLifecycle()
   val isOverlaySheetOpen by viewModel.isOverlaySheetOpen.collectAsStateWithLifecycle()
 
   var showGrid by remember { mutableStateOf(true) }
@@ -233,10 +230,9 @@ fun CameraScreen(
         )
       }
 
-      // 5. Bottom Controls (Shutter, Gallery Library, Import Overlay Video)
+      // 5. Bottom Controls (Shutter, Import Overlay Video)
       CameraBottomControls(
         recordingStatus = cameraUiState.recordingStatus,
-        recordedVideos = cameraUiState.recordedVideos,
         overlayState = overlayState,
         onRecordClick = {
           handleRecordClick(
@@ -255,7 +251,6 @@ fun CameraScreen(
             viewModel = viewModel
           )
         },
-        onOpenGallery = { viewModel.openGallerySheet() },
         onPickOverlayVideo = {
           videoPickerLauncher.launch(
             PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.VideoOnly)
@@ -286,22 +281,6 @@ fun CameraScreen(
           )
         },
         onRemoveOverlay = { viewModel.clearOverlayVideo() }
-      )
-    }
-
-    // Modal Sheet: Recorded Videos Library & Player
-    if (isGallerySheetOpen) {
-      RecordedVideoGallerySheet(
-        recordedVideos = cameraUiState.recordedVideos,
-        selectedVideo = selectedPreviewVideo,
-        onSelectVideo = { viewModel.setPreviewVideo(it) },
-        onUseAsOverlay = { video ->
-          viewModel.setOverlayVideo(video.uri, context)
-          viewModel.closeGallerySheet()
-          Toast.makeText(context, "Recorded video set as reference overlay loop!", Toast.LENGTH_SHORT).show()
-        },
-        onDeleteVideo = { viewModel.deleteRecordedVideo(it) },
-        onDismiss = { viewModel.closeGallerySheet() }
       )
     }
   }
