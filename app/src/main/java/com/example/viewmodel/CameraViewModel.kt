@@ -185,40 +185,69 @@ class CameraViewModel(application: Application) : AndroidViewModel(application) 
   }
 
   fun setOverlayPreset(preset: OverlayPreset) {
-    _overlayState.update {
+    _overlayState.update { current ->
+      val prev = if (current.preset != OverlayPreset.FULL_SCREEN) current.preset else current.previousPreset
       when (preset) {
-        OverlayPreset.PIP_CORNER -> it.copy(
+        OverlayPreset.PIP_CORNER -> current.copy(
           preset = preset,
+          previousPreset = prev,
           scale = 0.85f,
           opacity = 1.0f,
           offsetX = 0f,
           offsetY = 0f
         )
-        OverlayPreset.GHOST_GUIDE -> it.copy(
+        OverlayPreset.GHOST_GUIDE -> current.copy(
           preset = preset,
+          previousPreset = prev,
           scale = 1.0f,
           opacity = 0.45f,
           offsetX = 0f,
           offsetY = 0f
         )
-        OverlayPreset.SPLIT_TOP -> it.copy(
+        OverlayPreset.SPLIT_TOP -> current.copy(
           preset = preset,
+          previousPreset = prev,
           scale = 1.0f,
           opacity = 1.0f,
           offsetX = 0f,
           offsetY = 0f
         )
-        OverlayPreset.SPLIT_BOTTOM -> it.copy(
+        OverlayPreset.SPLIT_BOTTOM -> current.copy(
           preset = preset,
+          previousPreset = prev,
           scale = 1.0f,
           opacity = 1.0f,
           offsetX = 0f,
           offsetY = 0f
         )
-        OverlayPreset.FULL_SCREEN -> it.copy(
+        OverlayPreset.FULL_SCREEN -> current.copy(
           preset = preset,
+          previousPreset = prev,
           scale = 1.0f,
-          opacity = 0.70f,
+          opacity = 1.0f,
+          offsetX = 0f,
+          offsetY = 0f
+        )
+      }
+    }
+  }
+
+  fun toggleFullscreenOverlay() {
+    _overlayState.update { current ->
+      if (current.preset == OverlayPreset.FULL_SCREEN) {
+        val target = if (current.previousPreset == OverlayPreset.FULL_SCREEN) OverlayPreset.PIP_CORNER else current.previousPreset
+        current.copy(
+          preset = target,
+          scale = if (target == OverlayPreset.PIP_CORNER) 0.85f else 1.0f,
+          offsetX = 0f,
+          offsetY = 0f
+        )
+      } else {
+        current.copy(
+          previousPreset = current.preset,
+          preset = OverlayPreset.FULL_SCREEN,
+          scale = 1.0f,
+          opacity = 1.0f,
           offsetX = 0f,
           offsetY = 0f
         )

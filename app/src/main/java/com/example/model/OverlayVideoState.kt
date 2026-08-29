@@ -21,6 +21,7 @@ data class OverlayVideoState(
   val offsetX: Float = 0f,
   val offsetY: Float = 0f,
   val preset: OverlayPreset = OverlayPreset.PIP_CORNER,
+  val previousPreset: OverlayPreset = OverlayPreset.PIP_CORNER,
   val playbackSpeed: Float = 1.0f,
   val isVisible: Boolean = true,
   val isControlsExpanded: Boolean = false,
