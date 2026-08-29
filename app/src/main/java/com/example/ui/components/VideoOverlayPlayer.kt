@@ -141,7 +141,7 @@ fun VideoOverlayPlayer(
             .align(Alignment.TopCenter)
             .alpha(overlayState.opacity)
             .background(Color.Black)
-            .border(1.dp, OverlayCyan.copy(alpha = 0.5f))
+            .border(1.dp, Color.Transparent)
         ) {
           OverlayVideoSurface(
             uri = uri,
@@ -169,7 +169,7 @@ fun VideoOverlayPlayer(
             .align(Alignment.BottomCenter)
             .alpha(overlayState.opacity)
             .background(Color.Black)
-            .border(1.dp, OverlayCyan.copy(alpha = 0.5f))
+            .border(1.dp, Color.Transparent)
         ) {
           OverlayVideoSurface(
             uri = uri,
@@ -235,7 +235,7 @@ fun VideoOverlayPlayer(
             .clip(shape)
             .alpha(overlayState.opacity)
             .background(CameraBlack)
-            .border(1.5.dp, OverlayCyan.copy(alpha = 0.7f), shape)
+            .border(1.5.dp, Color.Transparent, shape)
             .then(
               if (!overlayState.isLocked) {
                 Modifier.pointerInput(Unit) {
@@ -265,25 +265,8 @@ fun VideoOverlayPlayer(
               .background(GlassOverlay)
               .padding(horizontal = 8.dp, vertical = 4.dp),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
+            horizontalArrangement = Arrangement.End
           ) {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-              Box(
-                modifier = Modifier
-                  .size(6.dp)
-                  .clip(CircleShape)
-                  .background(OverlayCyan)
-              )
-              Spacer(modifier = Modifier.width(4.dp))
-              Text(
-                text = "LOOP",
-                color = OverlayCyan,
-                fontSize = 9.sp,
-                fontWeight = FontWeight.Bold,
-                letterSpacing = 1.sp
-              )
-            }
-
             Row(verticalAlignment = Alignment.CenterVertically) {
               IconButton(
                 onClick = onToggleLock,
@@ -333,7 +316,7 @@ fun VideoOverlayPlayer(
               .padding(horizontal = 6.dp, vertical = 2.dp)
           ) {
             Text(
-              text = "${(overlayState.opacity * 100).toInt()}% · ${(overlayState.playbackSpeed)}x",
+              text = "${(overlayState.opacity * 100).toInt()}%",
               color = TextSecondary,
               fontSize = 9.sp,
               fontWeight = FontWeight.Medium
@@ -427,23 +410,8 @@ private fun OverlayHUDHeader(
       verticalAlignment = Alignment.CenterVertically,
       modifier = Modifier.weight(1f)
     ) {
-      Box(
-        modifier = Modifier
-          .size(8.dp)
-          .clip(CircleShape)
-          .background(OverlayCyan)
-      )
-      Spacer(modifier = Modifier.width(6.dp))
       Text(
-        text = "REF LOOP [SILENT]",
-        color = OverlayCyan,
-        fontSize = 11.sp,
-        fontWeight = FontWeight.Bold,
-        letterSpacing = 1.sp
-      )
-      Spacer(modifier = Modifier.width(8.dp))
-      Text(
-        text = overlayState.title,
+        text = overlayState.title.ifEmpty { "Reference Video" },
         color = TextSecondary,
         fontSize = 11.sp,
         maxLines = 1,

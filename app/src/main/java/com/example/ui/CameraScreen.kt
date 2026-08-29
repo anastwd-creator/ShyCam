@@ -53,7 +53,6 @@ import com.example.ui.components.CameraTopBar
 import com.example.ui.components.CameraViewFinder
 import com.example.ui.components.OverlaySettingsSheet
 import com.example.ui.components.PermissionRequestView
-import com.example.ui.components.RecordingTimerBadge
 import com.example.ui.components.VideoOverlayPlayer
 import com.example.ui.theme.CameraBlack
 import com.example.viewmodel.CameraViewModel
@@ -210,24 +209,7 @@ fun CameraScreen(
           .statusBarsPadding()
       )
 
-      // 4. Recording Timer Badge (Center Top)
-      AnimatedVisibility(
-        visible = cameraUiState.recordingStatus == RecordingStatus.RECORDING ||
-          cameraUiState.recordingStatus == RecordingStatus.PAUSED,
-        enter = fadeIn() + slideInVertically { -it },
-        exit = fadeOut() + slideOutVertically { -it },
-        modifier = Modifier
-          .align(Alignment.TopCenter)
-          .statusBarsPadding()
-          .padding(top = 64.dp)
-      ) {
-        RecordingTimerBadge(
-          durationSeconds = cameraUiState.recordingDurationSeconds,
-          recordingStatus = cameraUiState.recordingStatus
-        )
-      }
-
-      // 5. Bottom Controls (Shutter, Camera Switch, Import Overlay Video)
+      // 4. Bottom Controls (Shutter, Camera Switch, Import Overlay Video)
       CameraBottomControls(
         recordingStatus = cameraUiState.recordingStatus,
         overlayState = overlayState,

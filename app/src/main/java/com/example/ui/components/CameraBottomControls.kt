@@ -169,7 +169,7 @@ fun CameraBottomControls(
               .background(if (overlayState.uri != null) OverlayCyanMuted else CameraSurfaceElevated)
               .border(
                 1.5.dp,
-                if (overlayState.uri != null) OverlayCyan else CameraBorder,
+                if (overlayState.uri != null) Color.Transparent else CameraBorder,
                 RoundedCornerShape(14.dp)
               )
               .testTag("overlay_picker_button"),
