@@ -75,8 +75,8 @@ object MediaUtils {
       MediaStore.Video.Media.DATE_ADDED
     )
 
-    val selection = "${MediaStore.Video.Media.DISPLAY_NAME} LIKE ?"
-    val selectionArgs = arrayOf("CamLoop_%")
+    val selection = "${MediaStore.Video.Media.DISPLAY_NAME} LIKE ? OR ${MediaStore.Video.Media.DISPLAY_NAME} LIKE ?"
+    val selectionArgs = arrayOf("ShyCam_%", "CamLoop_%")
     val sortOrder = "${MediaStore.Video.Media.DATE_ADDED} DESC"
 
     try {

@@ -334,13 +334,13 @@ private fun handleRecordClick(
   }
 
   val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(Date())
-  val fileName = "CamLoop_$timeStamp.mp4"
+  val fileName = "ShyCam_$timeStamp.mp4"
 
   val contentValues = ContentValues().apply {
     put(MediaStore.MediaColumns.DISPLAY_NAME, fileName)
     put(MediaStore.MediaColumns.MIME_TYPE, "video/mp4")
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-      put(MediaStore.Video.Media.RELATIVE_PATH, "Movies/CamLoop")
+      put(MediaStore.Video.Media.RELATIVE_PATH, "Movies/ShyCam")
     }
   }
 

@@ -98,7 +98,7 @@ fun PermissionRequestView(
       Spacer(modifier = Modifier.height(10.dp))
 
       Text(
-        text = "CamLoop records video with simultaneous reference overlay loops from your gallery.",
+        text = "ShyCam records video with simultaneous reference overlay loops from your gallery.",
         fontSize = 14.sp,
         color = TextSecondary,
         textAlign = TextAlign.Center,

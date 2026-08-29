@@ -22,6 +22,6 @@ dependencyResolutionManagement {
   }
 }
 
-rootProject.name = "CamLoop"
+rootProject.name = "ShyCam"
 
 include(":app")
