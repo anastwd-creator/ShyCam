@@ -1,5 +1,5 @@
 {
-  "name": "CamLoop Video Overlay",
+  "name": "ShyCam",
   "description": "Camera video recorder with customizable silent looping video overlay imported from gallery.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
