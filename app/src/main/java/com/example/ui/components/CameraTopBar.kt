@@ -18,10 +18,8 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Cameraswitch
 import androidx.compose.material.icons.filled.FlashOff
 import androidx.compose.material.icons.filled.FlashOn
-import androidx.compose.material.icons.filled.GridOn
 import androidx.compose.material.icons.filled.Mic
 import androidx.compose.material.icons.filled.MicOff
 import androidx.compose.material3.Icon
@@ -41,7 +39,6 @@ import com.example.model.OverlayVideoState
 import com.example.model.RecordingStatus
 import com.example.ui.theme.CameraBlack
 import com.example.ui.theme.CameraSurfaceElevated
-import com.example.ui.theme.GlassOverlay
 import com.example.ui.theme.OverlayCyan
 import com.example.ui.theme.OverlayCyanMuted
 import com.example.ui.theme.RecordRed
@@ -53,23 +50,19 @@ fun CameraTopBar(
   isTorchOn: Boolean,
   isAudioRecordingEnabled: Boolean,
   isBackCamera: Boolean,
-  showGrid: Boolean,
   overlayState: OverlayVideoState,
   recordingStatus: RecordingStatus,
   onToggleTorch: () -> Unit,
   onToggleAudioRecording: () -> Unit,
-  onToggleCameraLens: () -> Unit,
-  onToggleGrid: () -> Unit,
   onOpenOverlaySettings: () -> Unit,
   modifier: Modifier = Modifier
 ) {
   Row(
     modifier = modifier
       .fillMaxWidth()
-      .background(GlassOverlay)
       .padding(horizontal = 12.dp, vertical = 8.dp),
     verticalAlignment = Alignment.CenterVertically,
-    horizontalArrangement = Arrangement.SpaceBetween
+    horizontalArrangement = Arrangement.spacedBy(8.dp)
   ) {
     // Flash / Torch Toggle
     IconButton(
@@ -101,68 +94,6 @@ fun CameraTopBar(
         imageVector = if (isAudioRecordingEnabled) Icons.Default.Mic else Icons.Default.MicOff,
         contentDescription = "Toggle Audio Recording",
         tint = if (isAudioRecordingEnabled) TextPrimary else RecordRed,
-        modifier = Modifier.size(22.dp)
-      )
-    }
-
-    // Grid toggle
-    IconButton(
-      onClick = onToggleGrid,
-      modifier = Modifier
-        .size(40.dp)
-        .clip(CircleShape)
-        .background(if (showGrid) OverlayCyanMuted else Color.Transparent)
-        .testTag("grid_toggle_button")
-    ) {
-      Icon(
-        imageVector = Icons.Default.GridOn,
-        contentDescription = "Toggle Grid Lines",
-        tint = if (showGrid) OverlayCyan else TextSecondary,
-        modifier = Modifier.size(20.dp)
-      )
-    }
-
-    // Active Overlay Status Badge
-    if (overlayState.uri != null) {
-      Row(
-        modifier = Modifier
-          .clip(RoundedCornerShape(20.dp))
-          .background(OverlayCyan.copy(alpha = 0.15f))
-          .border(1.dp, OverlayCyan.copy(alpha = 0.6f), RoundedCornerShape(20.dp))
-          .clickable(onClick = onOpenOverlaySettings)
-          .padding(horizontal = 10.dp, vertical = 6.dp),
-        verticalAlignment = Alignment.CenterVertically
-      ) {
-        Box(
-          modifier = Modifier
-            .size(6.dp)
-            .clip(CircleShape)
-            .background(OverlayCyan)
-        )
-        Spacer(modifier = Modifier.width(5.dp))
-        Text(
-          text = "OVERLAY ON",
-          color = OverlayCyan,
-          fontSize = 10.sp,
-          fontWeight = FontWeight.Bold,
-          letterSpacing = 0.5.sp
-        )
-      }
-    }
-
-    // Flip Camera Front/Back
-    IconButton(
-      onClick = onToggleCameraLens,
-      enabled = recordingStatus == RecordingStatus.IDLE,
-      modifier = Modifier
-        .size(40.dp)
-        .clip(CircleShape)
-        .testTag("flip_camera_button")
-    ) {
-      Icon(
-        imageVector = Icons.Default.Cameraswitch,
-        contentDescription = "Switch Camera Front/Back",
-        tint = if (recordingStatus == RecordingStatus.IDLE) TextPrimary else TextSecondary.copy(alpha = 0.4f),
         modifier = Modifier.size(22.dp)
       )
     }

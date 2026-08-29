@@ -18,6 +18,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CallEnd
+import androidx.compose.material.icons.filled.Cameraswitch
 import androidx.compose.material.icons.filled.MicOff
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.PlayArrow
@@ -37,7 +38,6 @@ import com.example.model.OverlayVideoState
 import com.example.model.RecordingStatus
 import com.example.ui.theme.CameraBorder
 import com.example.ui.theme.CameraSurfaceElevated
-import com.example.ui.theme.GlassOverlay
 import com.example.ui.theme.OverlayCyan
 import com.example.ui.theme.OverlayCyanMuted
 import com.example.ui.theme.RecordRed
@@ -52,6 +52,7 @@ fun CameraBottomControls(
   onPauseResumeClick: () -> Unit,
   onPickOverlayVideo: () -> Unit,
   onOpenOverlaySettings: () -> Unit,
+  onToggleCameraLens: () -> Unit,
   modifier: Modifier = Modifier
 ) {
   val isRecording = recordingStatus == RecordingStatus.RECORDING || recordingStatus == RecordingStatus.PAUSED
@@ -60,13 +61,12 @@ fun CameraBottomControls(
   Column(
     modifier = modifier
       .fillMaxWidth()
-      .background(GlassOverlay)
       .padding(horizontal = 20.dp, vertical = 16.dp),
     horizontalAlignment = Alignment.CenterHorizontally
   ) {
     Row(
       modifier = Modifier.fillMaxWidth(),
-      verticalAlignment = Alignment.CenterVertically,
+      verticalAlignment = Alignment.Bottom,
       horizontalArrangement = Arrangement.SpaceBetween
     ) {
       // Left placeholder / spacer to keep shutter centered
@@ -127,44 +127,69 @@ fun CameraBottomControls(
         }
       }
 
-      // Right button: Import Video from Gallery / Configure Overlay
+      // Right Section: Camera Switch Button above Import Ref Button
       Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.clickable {
-          if (overlayState.uri != null) {
-            onOpenOverlaySettings()
-          } else {
-            onPickOverlayVideo()
-          }
-        }
+        verticalArrangement = Arrangement.spacedBy(10.dp)
       ) {
-        Box(
+        // Switch Camera Front/Back Button
+        IconButton(
+          onClick = onToggleCameraLens,
+          enabled = recordingStatus == RecordingStatus.IDLE,
           modifier = Modifier
-            .size(52.dp)
-            .clip(RoundedCornerShape(14.dp))
-            .background(if (overlayState.uri != null) OverlayCyanMuted else CameraSurfaceElevated)
-            .border(
-              1.5.dp,
-              if (overlayState.uri != null) OverlayCyan else CameraBorder,
-              RoundedCornerShape(14.dp)
-            )
-            .testTag("overlay_picker_button"),
-          contentAlignment = Alignment.Center
+            .size(44.dp)
+            .clip(CircleShape)
+            .background(CameraSurfaceElevated)
+            .border(1.dp, CameraBorder, CircleShape)
+            .testTag("flip_camera_button")
         ) {
           Icon(
-            imageVector = Icons.Default.MoreVert,
-            contentDescription = "Import reference overlay video from gallery",
-            tint = if (overlayState.uri != null) OverlayCyan else TextPrimary,
-            modifier = Modifier.size(24.dp)
+            imageVector = Icons.Default.Cameraswitch,
+            contentDescription = "Switch Camera Front/Back",
+            tint = if (recordingStatus == RecordingStatus.IDLE) TextPrimary else TextSecondary.copy(alpha = 0.4f),
+            modifier = Modifier.size(22.dp)
           )
         }
-        Spacer(modifier = Modifier.height(4.dp))
-        Text(
-          text = if (overlayState.uri != null) "Overlay" else "Import Ref",
-          color = if (overlayState.uri != null) OverlayCyan else TextSecondary,
-          fontSize = 11.sp,
-          fontWeight = FontWeight.Medium
-        )
+
+        // Import Video from Gallery / Configure Overlay
+        Column(
+          horizontalAlignment = Alignment.CenterHorizontally,
+          modifier = Modifier.clickable {
+            if (overlayState.uri != null) {
+              onOpenOverlaySettings()
+            } else {
+              onPickOverlayVideo()
+            }
+          }
+        ) {
+          Box(
+            modifier = Modifier
+              .size(52.dp)
+              .clip(RoundedCornerShape(14.dp))
+              .background(if (overlayState.uri != null) OverlayCyanMuted else CameraSurfaceElevated)
+              .border(
+                1.5.dp,
+                if (overlayState.uri != null) OverlayCyan else CameraBorder,
+                RoundedCornerShape(14.dp)
+              )
+              .testTag("overlay_picker_button"),
+            contentAlignment = Alignment.Center
+          ) {
+            Icon(
+              imageVector = Icons.Default.MoreVert,
+              contentDescription = "Import reference overlay video from gallery",
+              tint = if (overlayState.uri != null) OverlayCyan else TextPrimary,
+              modifier = Modifier.size(24.dp)
+            )
+          }
+          Spacer(modifier = Modifier.height(4.dp))
+          Text(
+            text = if (overlayState.uri != null) "Overlay" else "Import Ref",
+            color = if (overlayState.uri != null) OverlayCyan else TextSecondary,
+            fontSize = 11.sp,
+            fontWeight = FontWeight.Medium
+          )
+        }
       }
     }
   }

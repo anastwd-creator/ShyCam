@@ -195,18 +195,15 @@ fun CameraScreen(
         modifier = Modifier.fillMaxSize()
       )
 
-      // 3. Top Action Bar (Torch, Audio Toggle, Grid, Overlay status, Camera Flip)
+      // 3. Top Action Bar (Torch, Audio Toggle)
       CameraTopBar(
         isTorchOn = cameraUiState.isTorchOn,
         isAudioRecordingEnabled = cameraUiState.isAudioRecordingEnabled,
         isBackCamera = cameraUiState.isBackCamera,
-        showGrid = showGrid,
         overlayState = overlayState,
         recordingStatus = cameraUiState.recordingStatus,
         onToggleTorch = { viewModel.toggleTorch() },
         onToggleAudioRecording = { viewModel.toggleAudioRecording() },
-        onToggleCameraLens = { viewModel.toggleCameraLens() },
-        onToggleGrid = { showGrid = !showGrid },
         onOpenOverlaySettings = { viewModel.openOverlaySheet() },
         modifier = Modifier
           .align(Alignment.TopCenter)
@@ -230,7 +227,7 @@ fun CameraScreen(
         )
       }
 
-      // 5. Bottom Controls (Shutter, Import Overlay Video)
+      // 5. Bottom Controls (Shutter, Camera Switch, Import Overlay Video)
       CameraBottomControls(
         recordingStatus = cameraUiState.recordingStatus,
         overlayState = overlayState,
@@ -257,6 +254,7 @@ fun CameraScreen(
           )
         },
         onOpenOverlaySettings = { viewModel.openOverlaySheet() },
+        onToggleCameraLens = { viewModel.toggleCameraLens() },
         modifier = Modifier
           .align(Alignment.BottomCenter)
           .navigationBarsPadding()
