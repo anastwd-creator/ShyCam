@@ -35,6 +35,8 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.res.stringResource
+import com.example.R
 import com.example.model.OverlayVideoState
 import com.example.model.RecordingStatus
 import com.example.ui.theme.CameraBlack
@@ -75,7 +77,7 @@ fun CameraTopBar(
     ) {
       Icon(
         imageVector = if (isTorchOn) Icons.Default.FlashOn else Icons.Default.FlashOff,
-        contentDescription = "Toggle Torch",
+        contentDescription = stringResource(R.string.btn_toggle_torch),
         tint = if (isTorchOn) OverlayCyan else TextPrimary,
         modifier = Modifier.size(22.dp)
       )
@@ -92,7 +94,7 @@ fun CameraTopBar(
     ) {
       Icon(
         imageVector = if (isAudioRecordingEnabled) Icons.Default.Mic else Icons.Default.MicOff,
-        contentDescription = "Toggle Audio Recording",
+        contentDescription = stringResource(R.string.btn_toggle_audio),
         tint = if (isAudioRecordingEnabled) TextPrimary else RecordRed,
         modifier = Modifier.size(22.dp)
       )

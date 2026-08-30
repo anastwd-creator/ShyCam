@@ -47,10 +47,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.shycam.app.R
 import com.shycam.app.model.OverlayPreset
 import com.shycam.app.model.OverlayVideoState
 import com.shycam.app.ui.theme.CameraBlack
@@ -113,13 +115,13 @@ fun OverlaySettingsSheet(
       ) {
         Column(modifier = Modifier.weight(1f)) {
           Text(
-            text = "Video Loop Overlay",
+            text = stringResource(R.string.overlay_sheet_title),
             fontSize = 18.sp,
             fontWeight = FontWeight.Bold,
             color = TextPrimary
           )
           Text(
-            text = overlayState.title.ifEmpty { "Imported Gallery Video" },
+            text = overlayState.title.ifEmpty { stringResource(R.string.imported_gallery_video) },
             fontSize = 12.sp,
             color = TextSecondary,
             maxLines = 1,
@@ -130,7 +132,7 @@ fun OverlaySettingsSheet(
         IconButton(onClick = onDismiss) {
           Icon(
             imageVector = Icons.Default.Close,
-            contentDescription = "Close",
+            contentDescription = stringResource(R.string.btn_close),
             tint = TextSecondary
           )
         }
@@ -156,7 +158,7 @@ fun OverlaySettingsSheet(
         )
         Spacer(modifier = Modifier.width(10.dp))
         Text(
-          text = "Looping continuously without audio while camera records.",
+          text = stringResource(R.string.overlay_loop_notice),
           color = TextPrimary,
           fontSize = 12.sp,
           lineHeight = 16.sp
@@ -167,7 +169,7 @@ fun OverlaySettingsSheet(
 
       // Layout Preset Options
       Text(
-        text = "OVERLAY LAYOUT PRESET",
+        text = stringResource(R.string.section_layout_preset),
         fontSize = 11.sp,
         fontWeight = FontWeight.Bold,
         letterSpacing = 1.sp,
@@ -195,7 +197,7 @@ fun OverlaySettingsSheet(
               .padding(horizontal = 14.dp, vertical = 8.dp)
           ) {
             Text(
-              text = preset.title,
+              text = stringResource(preset.titleRes),
               color = if (isSelected) CameraBlack else TextPrimary,
               fontSize = 13.sp,
               fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal
@@ -213,7 +215,7 @@ fun OverlaySettingsSheet(
         verticalAlignment = Alignment.CenterVertically
       ) {
         Text(
-          text = "OPACITY / TRANSPARENCY",
+          text = stringResource(R.string.section_opacity),
           fontSize = 11.sp,
           fontWeight = FontWeight.Bold,
           letterSpacing = 1.sp,
@@ -246,7 +248,7 @@ fun OverlaySettingsSheet(
           verticalAlignment = Alignment.CenterVertically
         ) {
           Text(
-            text = "SIZE / SCALE",
+            text = stringResource(R.string.section_size_scale),
             fontSize = 11.sp,
             fontWeight = FontWeight.Bold,
             letterSpacing = 1.sp,
@@ -275,7 +277,7 @@ fun OverlaySettingsSheet(
 
       // Playback Speed
       Text(
-        text = "PLAYBACK SPEED",
+        text = stringResource(R.string.section_playback_speed),
         fontSize = 11.sp,
         fontWeight = FontWeight.Bold,
         letterSpacing = 1.sp,
@@ -329,7 +331,7 @@ fun OverlaySettingsSheet(
         ) {
           Icon(Icons.Default.RestartAlt, contentDescription = null, modifier = Modifier.size(16.dp))
           Spacer(modifier = Modifier.width(6.dp))
-          Text(text = "Reset Pos", fontSize = 12.sp)
+          Text(text = stringResource(R.string.btn_reset_pos), fontSize = 12.sp)
         }
 
         OutlinedButton(
@@ -348,7 +350,7 @@ fun OverlaySettingsSheet(
             modifier = Modifier.size(16.dp)
           )
           Spacer(modifier = Modifier.width(6.dp))
-          Text(text = if (overlayState.isLocked) "Locked" else "Unlocked", fontSize = 12.sp)
+          Text(text = if (overlayState.isLocked) stringResource(R.string.btn_locked) else stringResource(R.string.btn_unlocked), fontSize = 12.sp)
         }
       }
 
@@ -371,7 +373,7 @@ fun OverlaySettingsSheet(
         ) {
           Icon(Icons.Default.SwapHoriz, contentDescription = null, modifier = Modifier.size(16.dp))
           Spacer(modifier = Modifier.width(6.dp))
-          Text(text = "Replace Video", fontSize = 12.sp)
+          Text(text = stringResource(R.string.btn_replace_video), fontSize = 12.sp)
         }
 
         Button(
@@ -387,7 +389,7 @@ fun OverlaySettingsSheet(
         ) {
           Icon(Icons.Default.DeleteOutline, contentDescription = null, modifier = Modifier.size(16.dp))
           Spacer(modifier = Modifier.width(6.dp))
-          Text(text = "Remove", fontSize = 12.sp)
+          Text(text = stringResource(R.string.btn_remove), fontSize = 12.sp)
         }
       }
     }

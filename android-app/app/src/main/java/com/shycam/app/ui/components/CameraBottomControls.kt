@@ -34,6 +34,8 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.res.stringResource
+import com.shycam.app.R
 import com.shycam.app.model.OverlayVideoState
 import com.shycam.app.model.RecordingStatus
 import com.shycam.app.ui.theme.CameraBorder
@@ -91,7 +93,7 @@ fun CameraBottomControls(
           ) {
             Icon(
               imageVector = if (isPaused) Icons.Default.PlayArrow else Icons.Default.MicOff,
-              contentDescription = if (isPaused) "Resume recording" else "Pause recording",
+              contentDescription = stringResource(if (isPaused) R.string.btn_resume_recording else R.string.btn_pause_recording),
               tint = TextPrimary,
               modifier = Modifier.size(24.dp)
             )
@@ -115,7 +117,7 @@ fun CameraBottomControls(
         ) {
           Icon(
             imageVector = Icons.Default.CallEnd,
-            contentDescription = if (isRecording) "Stop recording" else "Record video",
+            contentDescription = stringResource(if (isRecording) R.string.btn_stop_recording else R.string.btn_record_video),
             tint = Color.White,
             modifier = Modifier.size(38.dp)
           )
@@ -144,7 +146,7 @@ fun CameraBottomControls(
         ) {
           Icon(
             imageVector = Icons.Default.Cameraswitch,
-            contentDescription = "Switch Camera Front/Back",
+            contentDescription = stringResource(R.string.btn_switch_camera),
             tint = if (recordingStatus == RecordingStatus.IDLE) TextPrimary else TextSecondary.copy(alpha = 0.4f),
             modifier = Modifier.size(22.dp)
           )
@@ -171,14 +173,14 @@ fun CameraBottomControls(
           ) {
             Icon(
               imageVector = Icons.Default.MoreVert,
-              contentDescription = "Import reference overlay video from gallery",
+              contentDescription = stringResource(R.string.btn_import_ref_video),
               tint = TextPrimary,
               modifier = Modifier.size(24.dp)
             )
           }
           Spacer(modifier = Modifier.height(4.dp))
           Text(
-            text = if (overlayState.uri != null) "Overlay" else "Import Ref",
+            text = stringResource(if (overlayState.uri != null) R.string.label_overlay else R.string.label_import_ref),
             color = TextPrimary,
             fontSize = 11.sp,
             fontWeight = FontWeight.Medium

@@ -65,12 +65,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
+import com.shycam.app.R
 import com.shycam.app.model.OverlayPreset
 import com.shycam.app.model.OverlayVideoState
 import com.shycam.app.ui.theme.CameraBlack
@@ -275,7 +277,7 @@ fun VideoOverlayPlayer(
               ) {
                 Icon(
                   imageVector = if (overlayState.isLocked) Icons.Default.Lock else Icons.Default.LockOpen,
-                  contentDescription = "Lock overlay position",
+                  contentDescription = stringResource(R.string.btn_lock_overlay_pos),
                   tint = if (overlayState.isLocked) TextPrimary else TextSecondary,
                   modifier = Modifier.size(14.dp)
                 )
@@ -287,7 +289,7 @@ fun VideoOverlayPlayer(
               ) {
                 Icon(
                   imageVector = Icons.Default.Tune,
-                  contentDescription = "Overlay settings",
+                  contentDescription = stringResource(R.string.btn_overlay_settings),
                   tint = TextSecondary,
                   modifier = Modifier.size(14.dp)
                 )
@@ -299,7 +301,7 @@ fun VideoOverlayPlayer(
               ) {
                 Icon(
                   imageVector = Icons.Default.Close,
-                  contentDescription = "Close overlay",
+                  contentDescription = stringResource(R.string.btn_close_overlay),
                   tint = RecordRed,
                   modifier = Modifier.size(14.dp)
                 )
@@ -395,7 +397,7 @@ private fun OverlayHUDHeader(
       modifier = Modifier.weight(1f)
     ) {
       Text(
-        text = overlayState.title.ifEmpty { "Reference Video" },
+        text = overlayState.title.ifEmpty { stringResource(R.string.reference_video) },
         color = TextSecondary,
         fontSize = 11.sp,
         maxLines = 1,
@@ -410,7 +412,7 @@ private fun OverlayHUDHeader(
       ) {
         Icon(
           imageVector = Icons.Default.Tune,
-          contentDescription = "Overlay options",
+          contentDescription = stringResource(R.string.btn_overlay_settings),
           tint = TextPrimary,
           modifier = Modifier.size(18.dp)
         )
@@ -422,7 +424,7 @@ private fun OverlayHUDHeader(
       ) {
         Icon(
           imageVector = Icons.Default.Close,
-          contentDescription = "Close overlay",
+          contentDescription = stringResource(R.string.btn_close_overlay),
           tint = RecordRed,
           modifier = Modifier.size(18.dp)
         )

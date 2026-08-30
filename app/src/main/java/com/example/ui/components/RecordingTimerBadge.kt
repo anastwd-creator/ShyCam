@@ -28,6 +28,8 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.res.stringResource
+import com.example.R
 import com.example.model.RecordingStatus
 import com.example.ui.theme.CameraBlack
 import com.example.ui.theme.RecordRed
@@ -72,8 +74,9 @@ fun RecordingTimerBadge(
 
     Spacer(modifier = Modifier.width(8.dp))
 
+    val statusText = if (isPaused) stringResource(R.string.status_paused) else stringResource(R.string.status_rec)
     Text(
-      text = if (isPaused) "PAUSED ${MediaUtils.formatDuration(durationSeconds)}" else "REC ${MediaUtils.formatDuration(durationSeconds)}",
+      text = "$statusText ${MediaUtils.formatDuration(durationSeconds)}",
       color = TextPrimary,
       fontSize = 13.sp,
       fontWeight = FontWeight.Bold,

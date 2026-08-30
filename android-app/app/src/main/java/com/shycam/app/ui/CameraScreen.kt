@@ -46,6 +46,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.shycam.app.R
 import com.shycam.app.model.RecordedVideo
 import com.shycam.app.model.RecordingStatus
 import com.shycam.app.ui.components.CameraBottomControls
@@ -108,7 +109,7 @@ fun CameraScreen(
   ) { uri: Uri? ->
     if (uri != null) {
       viewModel.setOverlayVideo(uri, context)
-      Toast.makeText(context, "Overlay reference video imported!", Toast.LENGTH_SHORT).show()
+      Toast.makeText(context, context.getString(R.string.overlay_imported), Toast.LENGTH_SHORT).show()
     }
   }
 
@@ -288,7 +289,7 @@ private fun handleRecordClick(
 
   // Start new recording
   val capture = videoCapture ?: run {
-    Toast.makeText(context, "Camera not ready for recording", Toast.LENGTH_SHORT).show()
+    Toast.makeText(context, context.getString(R.string.camera_not_ready), Toast.LENGTH_SHORT).show()
     return
   }
 
@@ -344,9 +345,10 @@ private fun handleRecordClick(
             dateAdded = System.currentTimeMillis()
           )
           viewModel.stopRecordingTimer(recorded)
-          Toast.makeText(context, "Video saved successfully!", Toast.LENGTH_SHORT).show()
+          Toast.makeText(context, context.getString(R.string.video_saved_success), Toast.LENGTH_SHORT).show()
         } else {
-          viewModel.setRecordingError("Recording failed: ${recordEvent.cause?.message ?: "Unknown error"}")
+          val errorMsg = recordEvent.cause?.message ?: "Unknown error"
+          viewModel.setRecordingError(context.getString(R.string.recording_failed, errorMsg))
         }
       }
     }

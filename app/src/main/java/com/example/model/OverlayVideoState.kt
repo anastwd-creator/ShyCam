@@ -1,13 +1,15 @@
 package com.example.model
 
 import android.net.Uri
+import androidx.annotation.StringRes
+import com.example.R
 
-enum class OverlayPreset(val title: String) {
-  PIP_CORNER("Floating PiP"),
-  GHOST_GUIDE("Ghost Overlay"),
-  SPLIT_TOP("Top Half"),
-  SPLIT_BOTTOM("Bottom Half"),
-  FULL_SCREEN("Full Reference")
+enum class OverlayPreset(@StringRes val titleRes: Int) {
+  PIP_CORNER(R.string.preset_pip_corner),
+  GHOST_GUIDE(R.string.preset_ghost_guide),
+  SPLIT_TOP(R.string.preset_split_top),
+  SPLIT_BOTTOM(R.string.preset_split_bottom),
+  FULL_SCREEN(R.string.preset_full_screen)
 }
 
 data class OverlayVideoState(

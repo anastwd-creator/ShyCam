@@ -37,10 +37,12 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.shycam.app.R
 import com.shycam.app.ui.theme.CameraBlack
 import com.shycam.app.ui.theme.CameraBorder
 import com.shycam.app.ui.theme.CameraSurfaceDark
@@ -88,7 +90,7 @@ fun PermissionRequestView(
       Spacer(modifier = Modifier.height(28.dp))
 
       Text(
-        text = "Camera & Audio Access",
+        text = stringResource(R.string.permissions_title),
         fontSize = 24.sp,
         fontWeight = FontWeight.Bold,
         color = TextPrimary,
@@ -98,7 +100,7 @@ fun PermissionRequestView(
       Spacer(modifier = Modifier.height(10.dp))
 
       Text(
-        text = "ShyCam records video with simultaneous reference overlay loops from your gallery.",
+        text = stringResource(R.string.permissions_desc),
         fontSize = 14.sp,
         color = TextSecondary,
         textAlign = TextAlign.Center,
@@ -110,24 +112,24 @@ fun PermissionRequestView(
       // Permission checklist items
       PermissionFeatureRow(
         icon = Icons.Default.CameraAlt,
-        title = "Camera",
-        description = "To preview and record high-definition video"
+        title = stringResource(R.string.perm_camera_title),
+        description = stringResource(R.string.perm_camera_desc)
       )
 
       Spacer(modifier = Modifier.height(14.dp))
 
       PermissionFeatureRow(
         icon = Icons.Default.Mic,
-        title = "Microphone",
-        description = "To capture clear sound for your recordings"
+        title = stringResource(R.string.perm_mic_title),
+        description = stringResource(R.string.perm_mic_desc)
       )
 
       Spacer(modifier = Modifier.height(14.dp))
 
       PermissionFeatureRow(
         icon = Icons.Default.VideoLibrary,
-        title = "Gallery Access",
-        description = "To import reference videos for silent loop overlays"
+        title = stringResource(R.string.perm_gallery_title),
+        description = stringResource(R.string.perm_gallery_desc)
       )
 
       Spacer(modifier = Modifier.height(36.dp))
@@ -145,7 +147,7 @@ fun PermissionRequestView(
         shape = RoundedCornerShape(14.dp)
       ) {
         Text(
-          text = "Grant Permissions",
+          text = stringResource(R.string.btn_grant_permissions),
           fontSize = 16.sp,
           fontWeight = FontWeight.Bold
         )
@@ -170,7 +172,7 @@ fun PermissionRequestView(
         shape = RoundedCornerShape(14.dp)
       ) {
         Text(
-          text = "Open App Settings",
+          text = stringResource(R.string.btn_open_settings),
           fontSize = 14.sp
         )
       }

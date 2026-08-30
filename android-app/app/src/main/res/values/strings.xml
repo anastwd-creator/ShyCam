@@ -1,3 +1,61 @@
 <resources>
     <string name="app_name">ShyCam</string>
+    
+    <!-- Notifications and Toasts -->
+    <string name="overlay_imported">Overlay reference video imported!</string>
+    <string name="camera_not_ready">Camera not ready for recording</string>
+    <string name="video_saved_success">Video saved successfully!</string>
+    <string name="recording_failed">Recording failed: %1$s</string>
+    
+    <!-- Permissions Screen -->
+    <string name="permissions_title">Camera &amp; Audio Access</string>
+    <string name="permissions_desc">ShyCam records video with simultaneous reference overlay loops from your gallery.</string>
+    <string name="perm_camera_title">Camera</string>
+    <string name="perm_camera_desc">To preview and record high-definition video</string>
+    <string name="perm_mic_title">Microphone</string>
+    <string name="perm_mic_desc">To capture clear sound for your recordings</string>
+    <string name="perm_gallery_title">Gallery Access</string>
+    <string name="perm_gallery_desc">To import reference videos for silent loop overlays</string>
+    <string name="btn_grant_permissions">Grant Permissions</string>
+    <string name="btn_open_settings">Open App Settings</string>
+    
+    <!-- Camera Controls & Top Bar -->
+    <string name="btn_resume_recording">Resume recording</string>
+    <string name="btn_pause_recording">Pause recording</string>
+    <string name="btn_stop_recording">Stop recording</string>
+    <string name="btn_record_video">Record video</string>
+    <string name="btn_switch_camera">Switch Camera Front/Back</string>
+    <string name="btn_import_ref_video">Import reference overlay video from gallery</string>
+    <string name="label_overlay">Overlay</string>
+    <string name="label_import_ref">Import Ref</string>
+    <string name="btn_toggle_torch">Toggle Torch</string>
+    <string name="btn_toggle_audio">Toggle Audio Recording</string>
+    <string name="status_paused">PAUSED</string>
+    <string name="status_rec">REC</string>
+    
+    <!-- Overlay Settings Sheet & Overlay Player -->
+    <string name="overlay_sheet_title">Video Loop Overlay</string>
+    <string name="imported_gallery_video">Imported Gallery Video</string>
+    <string name="reference_video">Reference Video</string>
+    <string name="btn_close">Close</string>
+    <string name="overlay_loop_notice">Looping continuously without audio while camera records.</string>
+    <string name="section_layout_preset">OVERLAY LAYOUT PRESET</string>
+    <string name="section_opacity">OPACITY / TRANSPARENCY</string>
+    <string name="section_size_scale">SIZE / SCALE</string>
+    <string name="section_playback_speed">PLAYBACK SPEED</string>
+    <string name="btn_reset_pos">Reset Pos</string>
+    <string name="btn_locked">Locked</string>
+    <string name="btn_unlocked">Unlocked</string>
+    <string name="btn_replace_video">Replace Video</string>
+    <string name="btn_remove">Remove</string>
+    <string name="btn_lock_overlay_pos">Lock overlay position</string>
+    <string name="btn_overlay_settings">Overlay settings</string>
+    <string name="btn_close_overlay">Close overlay</string>
+    
+    <!-- Presets -->
+    <string name="preset_pip_corner">Floating PiP</string>
+    <string name="preset_ghost_guide">Ghost Overlay</string>
+    <string name="preset_split_top">Top Half</string>
+    <string name="preset_split_bottom">Bottom Half</string>
+    <string name="preset_full_screen">Full Reference</string>
 </resources>

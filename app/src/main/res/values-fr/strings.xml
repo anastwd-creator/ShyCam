@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ShyCam</string>
+    
+    <!-- Notifications and Toasts -->
+    <string name="overlay_imported">Vidéo de référence importée !</string>
+    <string name="camera_not_ready">La caméra n\'est pas prête pour l\'enregistrement</string>
+    <string name="video_saved_success">Vidéo enregistrée avec succès !</string>
+    <string name="recording_failed">Échec de l\'enregistrement : %1$s</string>
+    
+    <!-- Permissions Screen -->
+    <string name="permissions_title">Accès Caméra &amp; Audio</string>
+    <string name="permissions_desc">ShyCam enregistre des vidéos avec superposition en boucle silencieuse de votre galerie.</string>
+    <string name="perm_camera_title">Caméra</string>
+    <string name="perm_camera_desc">Pour prévisualiser et enregistrer des vidéos en haute définition</string>
+    <string name="perm_mic_title">Microphone</string>
+    <string name="perm_mic_desc">Pour capturer un son clair pour vos enregistrements</string>
+    <string name="perm_gallery_title">Accès à la galerie</string>
+    <string name="perm_gallery_desc">Pour importer des vidéos de référence en incrustation muette</string>
+    <string name="btn_grant_permissions">Accorder les autorisations</string>
+    <string name="btn_open_settings">Ouvrir les paramètres</string>
+    
+    <!-- Camera Controls & Top Bar -->
+    <string name="btn_resume_recording">Reprendre l\'enregistrement</string>
+    <string name="btn_pause_recording">Mettre en pause</string>
+    <string name="btn_stop_recording">Arrêter l\'enregistrement</string>
+    <string name="btn_record_video">Enregistrer une vidéo</string>
+    <string name="btn_switch_camera">Changer de caméra Avant/Arrière</string>
+    <string name="btn_import_ref_video">Importer une vidéo de référence de la galerie</string>
+    <string name="label_overlay">Incrustation</string>
+    <string name="label_import_ref">Importer réf.</string>
+    <string name="btn_toggle_torch">Activer/désactiver la lampe</string>
+    <string name="btn_toggle_audio">Activer/désactiver le micro</string>
+    <string name="status_paused">PAUSE</string>
+    <string name="status_rec">ENR</string>
+    
+    <!-- Overlay Settings Sheet & Overlay Player -->
+    <string name="overlay_sheet_title">Incrustation vidéo en boucle</string>
+    <string name="imported_gallery_video">Vidéo importée de la galerie</string>
+    <string name="reference_video">Vidéo de référence</string>
+    <string name="btn_close">Fermer</string>
+    <string name="overlay_loop_notice">Lecture en boucle continue sans audio pendant l\'enregistrement.</string>
+    <string name="section_layout_preset">DISPOSITION DE L\'INCRUSTATION</string>
+    <string name="section_opacity">OPACITÉ / TRANSPARENCE</string>
+    <string name="section_size_scale">TAILLE / ÉCHELLE</string>
+    <string name="section_playback_speed">VITESSE DE LECTURE</string>
+    <string name="btn_reset_pos">Réinitialiser</string>
+    <string name="btn_locked">Verrouillé</string>
+    <string name="btn_unlocked">Déverrouillé</string>
+    <string name="btn_replace_video">Remplacer la vidéo</string>
+    <string name="btn_remove">Supprimer</string>
+    <string name="btn_lock_overlay_pos">Verrouiller la position</string>
+    <string name="btn_overlay_settings">Paramètres d\'incrustation</string>
+    <string name="btn_close_overlay">Fermer l\'incrustation</string>
+    
+    <!-- Presets -->
+    <string name="preset_pip_corner">PiP flottant</string>
+    <string name="preset_ghost_guide">Incrustation fantôme</string>
+    <string name="preset_split_top">Moitié supérieure</string>
+    <string name="preset_split_bottom">Moitié inférieure</string>
+    <string name="preset_full_screen">Plein écran</string>
+</resources>
