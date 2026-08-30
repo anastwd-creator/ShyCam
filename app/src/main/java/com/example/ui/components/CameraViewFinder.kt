@@ -8,9 +8,6 @@ import androidx.camera.core.FocusMeteringAction
 import androidx.camera.core.Preview
 import androidx.camera.core.SurfaceOrientedMeteringPointFactory
 import androidx.camera.lifecycle.ProcessCameraProvider
-import androidx.camera.video.FallbackStrategy
-import androidx.camera.video.Quality
-import androidx.camera.video.QualitySelector
 import androidx.camera.video.Recorder
 import androidx.camera.video.VideoCapture
 import androidx.camera.view.PreviewView
@@ -61,7 +58,7 @@ fun CameraViewFinder(
   isBackCamera: Boolean,
   isTorchOn: Boolean,
   showGrid: Boolean = true,
-  onVideoCaptureReady: (VideoCapture<Recorder>, CameraControl) -> Unit,
+  onVideoCaptureReady: (VideoCapture<Recorder>?, CameraControl) -> Unit,
   onZoomRangeChanged: (Float, Float) -> Unit,
   onZoomRatioChanged: (Float) -> Unit,
   modifier: Modifier = Modifier
@@ -107,18 +104,6 @@ fun CameraViewFinder(
           it.setSurfaceProvider(pv.surfaceProvider)
         }
 
-        val qualitySelector = QualitySelector.from(
-          Quality.FHD,
-          FallbackStrategy.lowerQualityOrHigherThan(Quality.SD)
-        )
-
-        val recorder = Recorder.Builder()
-          .setQualitySelector(qualitySelector)
-          .setExecutor(cameraExecutor)
-          .build()
-
-        val videoCapture = VideoCapture.withOutput(recorder)
-
         val cameraSelector = if (isBackCamera) {
           CameraSelector.DEFAULT_BACK_CAMERA
         } else {
@@ -126,12 +111,38 @@ fun CameraViewFinder(
         }
 
         cameraProvider.unbindAll()
-        val boundCamera = cameraProvider.bindToLifecycle(
-          lifecycleOwner,
-          cameraSelector,
-          preview,
-          videoCapture
-        )
+
+        var videoCapture: VideoCapture<Recorder>? = null
+        try {
+          val recorder = Recorder.Builder()
+            .setExecutor(cameraExecutor)
+            .build()
+          videoCapture = VideoCapture.withOutput(recorder)
+        } catch (_: Exception) {}
+
+        val boundCamera = if (videoCapture != null) {
+          try {
+            cameraProvider.bindToLifecycle(
+              lifecycleOwner,
+              cameraSelector,
+              preview,
+              videoCapture
+            )
+          } catch (_: Exception) {
+            videoCapture = null
+            cameraProvider.bindToLifecycle(
+              lifecycleOwner,
+              cameraSelector,
+              preview
+            )
+          }
+        } else {
+          cameraProvider.bindToLifecycle(
+            lifecycleOwner,
+            cameraSelector,
+            preview
+          )
+        }
 
         camera = boundCamera
         val control = boundCamera.cameraControl

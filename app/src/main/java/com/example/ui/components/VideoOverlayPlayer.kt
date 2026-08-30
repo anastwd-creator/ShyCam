@@ -95,6 +95,7 @@ fun VideoOverlayPlayer(
   onToggleVisibility: () -> Unit,
   onToggleControls: () -> Unit,
   onOpenSettings: () -> Unit,
+  onToggleFullscreen: () -> Unit,
   onClose: () -> Unit,
   modifier: Modifier = Modifier
 ) {
@@ -143,6 +144,11 @@ fun VideoOverlayPlayer(
             .alpha(overlayState.opacity)
             .background(Color.Transparent)
             .border(1.dp, Color.Transparent)
+            .pointerInput(Unit) {
+              detectTapGestures(
+                onDoubleTap = { onToggleFullscreen() }
+              )
+            }
         ) {
           OverlayVideoSurface(
             uri = uri,
@@ -171,6 +177,11 @@ fun VideoOverlayPlayer(
             .alpha(overlayState.opacity)
             .background(Color.Transparent)
             .border(1.dp, Color.Transparent)
+            .pointerInput(Unit) {
+              detectTapGestures(
+                onDoubleTap = { onToggleFullscreen() }
+              )
+            }
         ) {
           OverlayVideoSurface(
             uri = uri,
@@ -196,6 +207,11 @@ fun VideoOverlayPlayer(
             .fillMaxSize()
             .alpha(overlayState.opacity)
             .background(Color.Transparent)
+            .pointerInput(Unit) {
+              detectTapGestures(
+                onDoubleTap = { onToggleFullscreen() }
+              )
+            }
         ) {
           OverlayVideoSurface(
             uri = uri,
@@ -237,6 +253,11 @@ fun VideoOverlayPlayer(
             .alpha(overlayState.opacity)
             .background(Color.Transparent)
             .border(1.5.dp, Color.Transparent, shape)
+            .pointerInput(Unit) {
+              detectTapGestures(
+                onDoubleTap = { onToggleFullscreen() }
+              )
+            }
             .then(
               if (!overlayState.isLocked) {
                 Modifier.pointerInput(Unit) {

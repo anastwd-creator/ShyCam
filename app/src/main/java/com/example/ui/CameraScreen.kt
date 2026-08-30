@@ -190,6 +190,7 @@ fun CameraScreen(
         onToggleVisibility = { viewModel.toggleOverlayVisibility() },
         onToggleControls = { viewModel.toggleOverlayControls() },
         onOpenSettings = { viewModel.openOverlaySheet() },
+        onToggleFullscreen = { viewModel.toggleFullscreenOverlay() },
         onClose = { viewModel.clearOverlayVideo() },
         modifier = Modifier.fillMaxSize()
       )
